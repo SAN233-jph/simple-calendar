@@ -1,0 +1,185 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74b9ff, #a29bfe); /* Modern gradient background */
+}
+.wrapper {
+  width: 900px; /* Increased width to accommodate both sections */
+  background: #ffffff; /* Clean white background for the calendar */
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  padding: 20px;
+}
+
+.content-container {
+  display: flex; /* Use flexbox for side-by-side layout */
+  gap: 20px; /* Add space between the calendar and month info */
+  align-items: flex-start; /* Align items at the top */
+}
+
+.calendar {
+  flex: 2; /* Calendar takes 2/3 of the space */
+  padding: 20px;
+}
+
+.calendar ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.calendar .weeks li {
+  font-weight: 500;
+  color: #636e72; /* Neutral gray for week names */
+  width: calc(100% / 7);
+  font-size: 1.1rem;
+}
+.calendar .days {
+  margin-bottom: 20px;
+}
+.calendar li {
+  color: #2d3436; /* Dark gray for text */
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+.calendar .days li {
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin: 5px; /* Add consistent spacing between boxes */
+  height: 60px; /* Fixed height for all boxes */
+  width: 60px; /* Fixed width for all boxes */
+  display: flex; /* Center content vertically and horizontally */
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dfe6e9; /* Light border for a clean look */
+  border-radius: 10px; /* Rounded corners for a modern feel */
+  box-sizing: border-box; /* Ensure padding and border are included in width/height */
+  background: #f9f9f9; /* Light background for days */
+  transition: background 0.3s, color 0.3s; /* Smooth hover effect */
+}
+.days li.inactive {
+  color: #b2bec3; /* Light gray for inactive days */
+}
+.days li.active {
+  color: #ffffff; /* White text for active day */
+  background: #6c5ce7; /* Vibrant purple for active day */
+  border: none; /* Remove border for active day */
+  position: relative; /* For the glowing effect */
+  box-shadow: 0 0 15px #6c5ce7, 0 0 30px #6c5ce7; /* Add a glowing effect */
+  animation: pulse 1.5s infinite; /* Add a pulsing animation */
+}
+.days li::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.days li.active::before {
+  background: #6c5ce7; /* Match active day background */
+}
+.days li:not(.active):hover {
+  background: #dfe6e9; /* Light hover effect for non-active days */
+  color: #0984e3; /* Vibrant blue on hover */
+}
+.days li:not(.active):hover::before {
+  background: #dfe6e9; /* Match hover background */
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 15px #6c5ce7, 0 0 30px #6c5ce7;
+  }
+  50% {
+    box-shadow: 0 0 25px #a29bfe, 0 0 50px #a29bfe;
+  }
+  100% {
+    box-shadow: 0 0 15px #6c5ce7, 0 0 30px #6c5ce7;
+  }
+}
+
+/* Styling for the month name */
+.current-date .month-name {
+  font-size: 2.5rem; /* Larger font size for the month name */
+  font-weight: bold; /* Bold font for emphasis */
+  color: #6c5ce7; /* Vibrant purple for the month name */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styling for navigation buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 20px; /* Add space between the buttons */
+  margin-top: 20px;
+}
+
+.navigation-buttons button {
+  padding: 10px 20px; /* Add padding for larger buttons */
+  font-size: 1.2rem; /* Slightly larger font size */
+  font-weight: bold; /* Bold font for the buttons */
+  color: #ffffff; /* White text */
+  background: #6c5ce7; /* Vibrant purple background */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners for a modern look */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.3s ease; /* Smooth hover effect */
+}
+
+.navigation-buttons button:hover {
+  background: #4e3dbb; /* Darker purple on hover */
+}
+
+.month-info {
+  flex: 1; /* Month info takes 1/3 of the space */
+  background: #f1f2f6; /* Light gray background for month info */
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.month-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3436; /* Dark gray for heading */
+  margin-bottom: 10px;
+}
+
+.month-info p {
+  font-size: 1rem;
+  color: #636e72; /* Neutral gray for text */
+  margin-bottom: 15px;
+}
+
+.month-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.month-info ul li {
+  font-size: 1rem;
+  color: #0984e3; /* Vibrant blue for events */
+  margin-bottom: 8px;
+}
+
+.month-info ul li strong {
+  font-weight: bold;
+  color: #6c5ce7; /* Highlighted date */
+}
